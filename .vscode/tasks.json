@@ -1,0 +1,79 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "options": {
+      "env": {
+          "pidir": "~/${workspaceFolderBasename}",
+          "pythonfile": "${workspaceFolder}/scripts/udp_3phase.py",
+          "excludefile": "${workspaceFolder}/excludefile",
+          "logsdir": "${workspaceFolder}/logs",
+          "buildproject": "cd ~/${workspaceFolderBasename}/build/ && cmake .. && make",
+          "runproject": "cd ~/${workspaceFolderBasename}/ && rm logs/*out; pkill -f threephase; find bin/ -type f -exec bash -c '{} > logs/`basename {}`.out &' \\;"
+      }
+    },
+    "tasks": [
+      {
+        "label": "Sync local to remote",
+        "type": "shell",
+        "command": "rsync --exclude-from=$excludefile -avr ${workspaceFolder}/ pi:$pidir",
+        "presentation": {
+          "reveal": "silent",
+          "revealProblems": "onProblem"
+        }
+      },
+      {
+        "label": "Compile and build Raspberry Pi C binary",
+        "type": "shell",
+        "command": "ssh -T pi <<< $buildproject",
+        "presentation": {
+          "reveal": "silent",
+          "revealProblems": "onProblem"
+        }
+      },
+      {
+        "label": "Sync remote to local",
+        "type": "shell",
+        "command": "rsync -avr pi:$pidir/ ${workspaceFolder}",
+        "dependsOrder": "sequence",
+        "dependsOn": [
+          "Sync local to remote",
+          "Compile and build Raspberry Pi C binary"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "silent",
+          "revealProblems": "onProblem"
+        }
+      },
+      {
+        "label": "Run the binaries remotely",
+        "type": "shell",
+        "command": "ssh -T pi <<< $runproject",
+        "presentation": {
+          "reveal": "silent",
+          "revealProblems": "onProblem"
+        }
+      },
+      {
+        "label": "Run the python script",
+        "type": "shell",
+        "command": "rm $logsdir/*out; ${config:python.pythonPath} $pythonfile -d > $logsdir/`basename $pythonfile .py`.out",
+        "dependsOrder": "sequence",
+        "dependsOn": [
+          "Run the binaries remotely"
+        ],
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "always"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
