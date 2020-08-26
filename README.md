@@ -4,7 +4,7 @@
 
 ## Description
 
-Measuring the home temperature, light intensity, and power consumption of a home in order to analyze the overall energy effiency.
+Measuring the home temperature, light intensity, and power consumption of a home in order to analyze its overall energy effiency.
 
 ---
 
