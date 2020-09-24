@@ -1,4 +1,9 @@
 {
     "python.pythonPath": "/mnt/c/Users/alemo/minicondaWSL/bin/python",
     "cmake.configureOnOpen": false,
+    "idf.espIdfPath": "/mnt/c/Users/alemo/esp-idf",
+    "idf.toolsPath": "/mnt/c/Users/alemo/.espressif",
+    "idf.pythonBinPath": "/mnt/c/Users/alemo/.espressif/python_env/idf4.1_py3.8_env/bin/python",
+    "idf.customExtraPaths": "/mnt/c/Users/alemo/.espressif/python_env/idf4.1_py3.8_env/bin:/mnt/c/Users/alemo/MinicondaWSL/bin:/mnt/c/Users/alemo/.espressif/tools/xtensa-esp32-elf/esp-2020r2-8.2.0/xtensa-esp32-elf/bin:/mnt/c/Users/alemo/.espressif/tools/xtensa-esp32s2-elf/esp-2020r2-8.2.0/xtensa-esp32s2-elf/bin:/mnt/c/Users/alemo/.espressif/tools/esp32ulp-elf/2.28.51-esp-20191205/esp32ulp-elf-binutils/bin:/mnt/c/Users/alemo/.espressif/tools/esp32s2ulp-elf/2.28.51-esp-20191205/esp32s2ulp-elf-binutils/bin:/mnt/c/Users/alemo/.espressif/tools/openocd-esp32/v0.10.0-esp32-20191114/openocd-esp32/bin",
+    "idf.customExtraVars": "{\"OPENOCD_SCRIPTS\":\"/mnt/c/Users/alemo/.espressif/tools/openocd-esp32/v0.10.0-esp32-20191114/openocd-esp32/share/openocd/scripts\"}",
 }

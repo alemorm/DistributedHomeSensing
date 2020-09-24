@@ -10,6 +10,16 @@ Measuring the home temperature, light intensity, and power consumption of a home
 
 ## Overview
 
+![hardware]
+
+---
+
+![softwareoverview]
+
+---
+
+![software]
+
 ---
 
 ## Setup
@@ -21,6 +31,9 @@ Measuring the home temperature, light intensity, and power consumption of a home
 ### Getting Started
 
 <!-- Links -->
+[hardware]: img/HardwareBlockDiagramV2.png
+[software]: img/SoftwareBlockDiagramV2.png
+[softwareoverview]: img/SoftwareOverview.png
 [`threephasegenerator`]: src/threephasegenerator.c
 [`threephaseforwarder`]: src/threephaseforwarder.c
 [`udp_3phase`]: scripts/udp_3phase.py
