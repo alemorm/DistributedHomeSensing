@@ -1,8 +1,8 @@
 // Pins
 #define THERMISTORPIN 4
-#define SAMPLERATE 1000
-#define READDELAY 10
-#define PRINTDELAY 10000
+#define SAMPLERATE 10
+#define READDELAY 500
+#define PRINTDELAY 5000
 
 const double VCC = 3.3;             // NodeMCU on board 3.3v vcc
 const double R2 = 10000;            // 10k ohm series resistor
@@ -17,7 +17,7 @@ void setup() {
 }
 
 void loop() {
-  double thermalSamples[SAMPLERATE], average, Vout, Rth, temperature, adc_value; 
+  double thermalSamples[SAMPLERATE], average, Vout, Rth, temperature; 
   analogReadResolution(10);
 
   average = 0;
@@ -38,7 +38,7 @@ void loop() {
  *  where A = 0.001129148, B = 0.000234125 and C = 8.76741*10^-8  */
   temperature = (1 / (A + (B * log(Rth)) + (C * pow((log(Rth)),3))));   // Temperature in kelvin
 
-  temperature = -temperature + 273.15;  // Temperature in degree celsius
+  temperature = 273.15 - temperature;  // Temperature in degree celsius
   temperature = temperature * (9/5.) + 32; // Temperature in degree Fahrenheit
   Serial.print("Temperature = ");
   Serial.print(temperature);
